@@ -5,11 +5,11 @@
 #set --use_mask to use the proposed transient handling module
 
 exp_name1="train/exp1"
-root_dir1="../dataset/brandenburg_gate/"
+root_dir1="./data/brandenburg_gate/"
 dataset_name1='phototourism'
-save_dir1=../our_results/brandenburg_gate
+save_dir1=results/brandenburg_gate
 
-epochs=22
+epochs=20
 nerf_out_dim1=64
 model_mode1="1-1" 
 decoder='linearStyle'
@@ -21,7 +21,7 @@ img_downscale=4
 
 
 #train#
-CUDA_VISIBLE_DEVICES=7  python3 train_mask_grid_sample.py --root_dir $root_dir1 \
+CUDA_VISIBLE_DEVICES=0 python3 train_mask_grid_sample.py --root_dir $root_dir1 \
     --dataset_name phototourism --save_dir $save_dir1 \
     --img_downscale $img_downscale --num_epochs $epochs \
     --N_importance 64 --N_samples 64 --batch_size 1024 \
@@ -34,28 +34,4 @@ CUDA_VISIBLE_DEVICES=7  python3 train_mask_grid_sample.py --root_dir $root_dir1 
     --decoder linearStyle --decoder_num_res_blocks $decoder_num_res_blocks \
     --nerf_out_dim $nerf_out_dim1 --use_cache --proj_name style_gnerf \
     --num_gpus 1 --use_mask --exp_name $exp_name1 --use_depth \
-    --ckpt_path /home/raytsai/cv-final/our_results/brandenburg_gate/ckpts/train/exp1/epoch=20-step=720615.ckpt
-
-
-# # #test#
-# # cd /mnt/cephfs/dataset/NVS/nerfInWild/experimental_results/logs/$exp_name1/codes  
-# cd /home/raytsai/cv-final/CR-NeRF-PyTorch/experimental_results/logs/$exp_name1/codes
-
-# # #render image#
-# CUDA_VISIBLE_DEVICES=3 python3 eval.py \
-#   --root_dir $root_dir1 \
-#   --save_dir $save_dir1 \
-#   --dataset_name $dataset_name1 --scene_name $exp_name1 \
-#   --split test_test --img_downscale $img_downscale \
-#   --N_samples 256 --N_importance 256 --N_emb_xyz 15 \
-#   --N_vocab 1500  \
-#   --ckpt_path $ckpt_path1 \
-#   --chunk 2048 --img_wh 320 240   --encode_a --decoder $decoder --decoder_num_res_blocks $decoder_num_res_blocks --nerf_out_dim $nerf_out_dim1
-
-# # #calculate metrics#
-# CUDA_VISIBLE_DEVICES=3  python3 eval_metric.py \
-#   --root_dir $root_dir1 \
-#   --save_dir $save_dir1 \
-#   --dataset_name $dataset_name1 --scene_name $exp_name1 \
-#   --split test_test --img_downscale $img_downscale \
-#   --img_wh 320 240
+    --ckpt_path /home/raytsai/cv-final/CR-NeRF-via-Depth-Guidance/results/brandenburg_gate/ckpts/train/exp1/last.ckpt

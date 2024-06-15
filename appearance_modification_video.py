@@ -124,6 +124,7 @@ def define_poses_brandenburg_gate(dataset):
                           [ 0.01082206, -0.99294089,  0.11811554,  0.00464499], \
                           [-0.07629626, -0.11859807, -0.99000676,  0.02410428]])
 
+    #### wrong position in the original code ####
     # dx1 = np.linspace(-0.25, 0.25, N_frames)
     # dx2 = np.linspace(0.25, 0.38, N_frames - N_frames//2)
     # dx = np.concatenate((dx1, dx2))
@@ -132,6 +133,7 @@ def define_poses_brandenburg_gate(dataset):
     # dy = np.concatenate((dy1, dy2))
     # dz1 = np.linspace(0.1, 0.3, N_frames//2)
     # dz2 = np.linspace(0.3, 0.1, N_frames - N_frames//2)
+
     dx1 = np.linspace(-0.02, 0.025, N_frames)
     dx2 = np.linspace(-0.02, 0.038, N_frames - N_frames//2)
     dx = np.concatenate((dx1, dx2))
@@ -191,40 +193,6 @@ def define_poses_trevi_fountain(dataset):
         dataset.poses_test[i, 2, 3] += dz[i]
         dataset.poses_test[i, :, :3] = np.dot(eulerAnglesToRotationMatrix([theta_x[i],theta_y[i],theta_z[i]]), dataset.poses_test[i, :, :3])
 
-def define_poses_sacre_coeur(dataset):
-    # N_frames = 30 * 8
-    N_frames = 10
-
-    pose_init = np.array([[ 0.99883139, -0.04098478, -0.02561468, 0.00979444],
-                          [-0.04329703, -0.99430183, -0.09741269, 0.0027443],
-                          [-0.02147629, 0.09840789, -0.9949144, 0.00753025]])
-
-    dx = np.linspace(-0.03, 0.03, N_frames)   # + right
-    
-    dy1 = np.linspace(-0., 0.002, N_frames//2)    # + down
-    dy2 = np.linspace(0.002, -0., N_frames - N_frames//2)
-    dy = np.concatenate((dy1, dy2))
-
-    dz1 = np.linspace(0.05, 0.2, N_frames//2)  # + foaward
-    dz2 = np.linspace(0.2, 0.05, N_frames - N_frames//2)  # + foaward
-
-    dz = np.concatenate((dz1, dz2))
-
-    theta_x1 = np.linspace(-0, 0, N_frames//2)
-    theta_x2 = np.linspace(0, -0, N_frames - N_frames//2)
-    theta_x = np.concatenate((theta_x1, theta_x2))
-
-    theta_y = np.linspace(math.pi/6/2, -math.pi/6/2, N_frames)
-
-    theta_z = np.linspace(0, 0, N_frames)
-
-    dataset.poses_test = np.tile(pose_init, (N_frames, 1, 1))
-    for i in range(N_frames):
-        dataset.poses_test[i, 0, 3] += dx[i]
-        dataset.poses_test[i, 1, 3] += dy[i]
-        dataset.poses_test[i, 2, 3] += dz[i]
-        dataset.poses_test[i, :, :3] = np.dot(eulerAnglesToRotationMatrix([theta_x[i],theta_y[i],theta_z[i]]), dataset.poses_test[i, :, :3])
-
 def define_camera(dataset):
     # define testing camera intrinsics (hard-coded, feel free to change)
     dataset.test_img_w, dataset.test_img_h = args.img_wh
@@ -261,7 +229,7 @@ if __name__ == "__main__":
     elif dir_name.split('_')[-1] == 'fountain':
         define_poses_trevi_fountain(dataset)
     elif dir_name.split('_')[-1] == 'coeur':
-        define_poses_sacre_coeur(dataset)
+        raise NotImplementedError
     else:
         input("Pose not defined")
 

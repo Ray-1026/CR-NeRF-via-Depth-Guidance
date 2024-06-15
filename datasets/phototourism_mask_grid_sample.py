@@ -55,6 +55,7 @@ class PhototourismDataset(Dataset):
         self.args=args
     def read_meta(self):
         # read all files in the tsv first (split to train and test later)
+        print(self.root_dir)
         tsv = glob.glob(os.path.join(self.root_dir, '*.tsv'))[0]
         self.scene_name = os.path.basename(tsv)[:-4]
         self.files = pd.read_csv(tsv, sep='\t')
@@ -179,7 +180,7 @@ class PhototourismDataset(Dataset):
                     img = Image.open(os.path.join(self.root_dir, 'dense/images',
                                                   self.image_paths[id_])).convert('RGB')
                     img_w, img_h = img.size
-                    if self.img_downscale >= 1:
+                    if self.img_downscale > 1:
                         w=img_w
                         h=img_h
                         img_w = img_w//self.img_downscale
@@ -284,7 +285,7 @@ class PhototourismDataset(Dataset):
             img = Image.open(os.path.join(self.root_dir, 'dense/images',
                                           self.image_paths[id_])).convert('RGB')
             img_w, img_h = img.size
-            if self.img_downscale >= 1:
+            if self.img_downscale > 1:
                 img_w = img_w//self.img_downscale
                 img_h = img_h//self.img_downscale
                 img_s = img.resize((img_w, img_h), Image.LANCZOS)

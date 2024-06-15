@@ -137,10 +137,8 @@ if __name__ == "__main__":
                                    [0,                  0,                    1]])
         if scene == 'brandenburg_gate':
             # select appearance embedding, hard-coded for each scene
-            # img = Image.open(os.path.join(args.root_dir, 'dense/images',
-            #                               dataset.image_paths[dataset.img_ids_train[314]])).convert('RGB') # 111 159 178 208 252 314
-            img = Image.open('/home/raytsai/cv-final/dataset/brandenburg_gate/dense/images/85572957_6053497857.jpg').convert('RGB')
-            
+            img = Image.open(os.path.join(args.root_dir, 'dense/images',
+                                          dataset.image_paths[dataset.img_ids_train[314]])).convert('RGB') # 111 159 178 208 252 314
             img_downscale = 8
             img_w, img_h = img.size
             img_w = img_w//img_downscale
@@ -150,12 +148,11 @@ if __name__ == "__main__":
             normalize = T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
             img = toTensor(img) # (3, h, w)
             whole_img = normalize(img).unsqueeze(0).cuda()
-            whole_img = (whole_img+1)/2
             kwargs['a_embedded_from_img'] = enc_a(whole_img)
             
 
             dataset.test_appearance_idx = 314 # 85572957_6053497857.jpg
-            N_frames = 1#30*8
+            N_frames = 30*8
 
             dx1 = np.linspace(-0.25, 0.25, N_frames)
             dx2 = np.linspace(0.25, 0.38, N_frames - N_frames//2)
@@ -178,17 +175,15 @@ if __name__ == "__main__":
             theta_z = np.linspace(0, 0, N_frames)
             # define poses
             dataset.poses_test = np.tile(dataset.poses_dict[1123], (N_frames, 1, 1))
-            # for i in range(N_frames):
-            #     dataset.poses_test[i, 0, 3] += dx[i]
-            #     dataset.poses_test[i, 1, 3] += dy[i]
-            #     dataset.poses_test[i, 2, 3] += dz[i]
-            #     dataset.poses_test[i, :, :3] = np.dot(eulerAnglesToRotationMatrix([theta_x[i],theta_y[i],theta_z[i]]), dataset.poses_test[i, :, :3])
+            for i in range(N_frames):
+                dataset.poses_test[i, 0, 3] += dx[i]
+                dataset.poses_test[i, 1, 3] += dy[i]
+                dataset.poses_test[i, 2, 3] += dz[i]
+                dataset.poses_test[i, :, :3] = np.dot(eulerAnglesToRotationMatrix([theta_x[i],theta_y[i],theta_z[i]]), dataset.poses_test[i, :, :3])
         elif scene == 'trevi_fountain':
             # select appearance embedding, hard-coded for each scene
-            # img = Image.open(os.path.join(args.root_dir, 'dense/images',
-            #                               dataset.image_paths[dataset.img_ids_train[1548]])).convert('RGB') # 10 1336 1548 296 420 1570 1662
-            
-            img = Image.open('/home/raytsai/cv-final/CR-NeRF-PyTorch/images/artworks/2.jpg').convert('RGB')
+            img = Image.open(os.path.join(args.root_dir, 'dense/images',
+                                          dataset.image_paths[dataset.img_ids_train[1548]])).convert('RGB') # 10 1336 1548 296 420 1570 1662
             img_downscale = 8
             img_w, img_h = img.size
             img_w = img_w//img_downscale
@@ -201,7 +196,7 @@ if __name__ == "__main__":
             kwargs['a_embedded_from_img'] = enc_a(whole_img)
 
             dataset.test_appearance_idx = dataset.img_ids_train[1548] # 85572957_6053497857.jpg
-            N_frames = 1#30*8
+            N_frames = 30*8
             dx = np.linspace(-0.8, 0.7, N_frames)   # + right
             dy1 = np.linspace(-0., 0.05, N_frames//2)    # + down
             dy2 = np.linspace(0.05, -0., N_frames - N_frames//2)
@@ -264,8 +259,6 @@ if __name__ == "__main__":
             theta_z = np.linspace(0, 0, N_frames)
             # define poses
             dataset.poses_test = np.tile(dataset.poses_dict[dataset.img_ids_train[99]], (N_frames, 1, 1))
-            
-            print(dataset.poses_test)
             for i in range(N_frames):
                 dataset.poses_test[i, 0, 3] += dx[i]
                 dataset.poses_test[i, 1, 3] += dy[i]
@@ -301,6 +294,7 @@ if __name__ == "__main__":
         rgbs_pred=rearrange(rgbs_pred, ' 1 n1 h w ->  (h w) n1',  h=int(h), w=int(w),n1=3)
         results['rgb_fine']=rgbs_pred.cpu()
         img_pred = np.clip(results['rgb_fine'].view(h, w, 3).detach().numpy(), 0, 1)
+        print(img_pred)
         img_pred_ = (img_pred*255).astype(np.uint8)
         imgs += [img_pred_]
         imageio.imwrite(os.path.join(dir_name, f'{i:03d}.png'), img_pred_)

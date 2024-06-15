@@ -103,7 +103,7 @@ if __name__ == "__main__":
                         imgs, fps=30)
         
     for i in range(len(psnrs)):
-        print(f'Num: {i}, PSNR: {psnrs[i]}, LPIPS_alex: {lpips_alexs[i]}')
+        print(f'Num: {i}, PSNR: {psnrs[i]:.02f}, LPIPS_alex: {lpips_alexs[i].item():.04f}')
 
     mean_psnr = torch.mean(torch.stack(psnrs)).item()
     mean_ssim = torch.mean(torch.stack([x.mean() for x in ssims])).item()

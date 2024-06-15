@@ -1,14 +1,10 @@
 # Description: test script for CR-Nerf
-# cd /mnt/cephfs/home/yangyifan/yangyifan/code/learnToSyLf/CR-NeRF
-# source /mnt/cephfs/home/yangyifan/miniconda/etc/profile.d/conda.sh
-# conda activate crnerf
-# exp_name1="test_only/test" #replace with your own experiment name
 
+# replace with your own save path
 exp_name1="train/exp1"
-root_dir1="../dataset/brandenburg_gate/"
-save_dir1=../our_results/brandenburg_gate #replace with your own save path
-# ckpt_path1="/home/raytsai/cv-final/our_results/brandenburg_gate/last.ckpt"
-ckpt_path1="/home/raytsai/cv-final/our_results/brandenburg_gate/last.ckpt"
+root_dir1="./data/brandenburg_gate/"
+save_dir1=results/brandenburg_gate 
+ckpt_path1="results/brandenburg_gate/ckpts/train/exp1/last.ckpt"
 dataset_name1='phototourism'
 
 nerf_out_dim1=64

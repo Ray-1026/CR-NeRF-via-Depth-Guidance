@@ -8,10 +8,8 @@ __pycache__
 *.npy
 *.png
 *.jpg
-# *.txt
 *.ckpt
 *.zip
-*/*.gif
-*.gif
 ckpts/*
-weixin/
+results/
+data/*

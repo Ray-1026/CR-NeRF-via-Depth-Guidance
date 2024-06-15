@@ -5,7 +5,7 @@ import torch
 def get_opts():
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('--root_dir', type=str,default="/mnt/cephfs/dataset/NVS/nerfInWild/brandenburg_gate/",
+    parser.add_argument('--root_dir', type=str, default="data/brandenburg_gate/",
                         help='root directory of dataset')
     parser.add_argument('--dataset_name', type=str, default='phototourism',
                         choices=['blender', 'phototourism'],
@@ -123,10 +123,10 @@ def get_opts():
                         help='number of gpus')
     parser.add_argument('--device_ids', help='device_ids', type=int, nargs="+",
                         default=list(range(torch.cuda.device_count())))
-    parser.add_argument('--save_dir', type=str, default="/mnt/cephfs/dataset/NVS/nerfInWild/experimental_results",
+    parser.add_argument('--save_dir', type=str, default="experimental_results",
                         help='checkpoint path to save')
                         
-    parser.add_argument('--wandbsavepath', type=str, default="/mnt/cephfs/dataset/NVS/nerfInWild/experimental_results",
+    parser.add_argument('--wandbsavepath', type=str, default="experimental_results",
                         help='checkpoint path to save')
     parser.add_argument('--ckpt_path', type=str, default=None,
                         help='pretrained checkpoint path to load')

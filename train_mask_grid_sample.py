@@ -475,15 +475,12 @@ def main(hparams_):
 
 @rank_zero_only
 def save_code(hparams_):
-    import datetime
     import shutil
     from distutils.dir_util import copy_tree
     experiment_dir = os.path.join(hparams_.save_dir,'logs',hparams_.exp_name,"codes")
     copy_tree('models/', experiment_dir+"/models")
     copy_tree('datasets/', experiment_dir+"/datasets")
     copy_tree('utils/', experiment_dir+"/utils")
-    # try:shutil.copy('command/train.sh', experiment_dir)
-    # except:shutil.copy('train.sh', experiment_dir)
     shutil.copy('train_mask_grid_sample.py', experiment_dir)
     shutil.copy('losses.py', experiment_dir)
     shutil.copy('eval.py',experiment_dir)
@@ -498,7 +495,6 @@ def save_code(hparams_):
 
 if __name__ == '__main__':
     import os
-    # os.environ["CUDA_VISIBLE_DEVICES"] = "6"
     hparams_ = get_opts()
     print(hparams_.exp_name)
     if hparams_.testit:
