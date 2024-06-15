@@ -9,14 +9,14 @@ cd CR-NeRF-via-Depth-Guidance
 
 ## Environment
 
-- Ubuntu 22.04
-- Python = 3.11
+- Python = 3.8
+- CUDA 11.7
 
 ```bash
 # create conda env and install required libs 
 
 cd CR-NeRF-via-Depth-Guidance
-conda create -n crnerf python=3.11
+conda create -n crnerf python=3.8
 conda activate crnerf
 pip install -r requirements.txt
 ```

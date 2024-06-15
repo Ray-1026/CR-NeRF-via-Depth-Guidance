@@ -17,7 +17,7 @@ import random
 
 
 class PhototourismDataset(Dataset):
-    def __init__(self, args, root_dir, split='train', img_downscale=1, val_num=1, use_cache=False, batch_size=1024, scale_anneal=-1, min_scale=0.25):
+    def __init__(self, args, root_dir, split='train', img_downscale=4, val_num=1, use_cache=False, batch_size=1024, scale_anneal=-1, min_scale=0.25):
         """
         img_downscale: how much scale to downsample the training images.
                        The original image sizes are around 500~100, so value of 1 or 2

@@ -15,7 +15,7 @@ img_downscale=4
 
 
 #################### render image ####################
-CUDA_VISIBLE_DEVICES=7  python3 eval.py \
+CUDA_VISIBLE_DEVICES=0  python3 eval.py \
   --root_dir $root_dir1 \
   --save_dir $save_dir1 \
   --dataset_name $dataset_name1 --scene_name $exp_name1 \
@@ -27,7 +27,7 @@ CUDA_VISIBLE_DEVICES=7  python3 eval.py \
   --decoder_num_res_blocks $decoder_num_res_blocks \
   --nerf_out_dim $nerf_out_dim1 --use_depth
 
-CUDA_VISIBLE_DEVICES=7  python3 eval_metric.py \
+CUDA_VISIBLE_DEVICES=0  python3 eval_metric.py \
   --root_dir $root_dir1 \
   --save_dir $save_dir1 \
   --dataset_name $dataset_name1 --scene_name $exp_name1 \

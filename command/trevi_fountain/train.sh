@@ -33,4 +33,5 @@ CUDA_VISIBLE_DEVICES=0  python3 train_mask_grid_sample.py --root_dir $root_dir1 
     --encode_c --encode_random --model_mode 1-1 \
     --decoder linearStyle --decoder_num_res_blocks $decoder_num_res_blocks \
     --nerf_out_dim $nerf_out_dim1 --use_cache --proj_name style_gnerf \
-    --num_gpus 1 --use_mask --exp_name $exp_name1 --use_depth
+    --num_gpus 1 --use_mask --exp_name $exp_name1 --use_depth \
+    --ckpt_path results/trevi_fountain/ckpts/train/exp1/last.ckpt

@@ -294,7 +294,6 @@ if __name__ == "__main__":
         rgbs_pred=rearrange(rgbs_pred, ' 1 n1 h w ->  (h w) n1',  h=int(h), w=int(w),n1=3)
         results['rgb_fine']=rgbs_pred.cpu()
         img_pred = np.clip(results['rgb_fine'].view(h, w, 3).detach().numpy(), 0, 1)
-        print(img_pred)
         img_pred_ = (img_pred*255).astype(np.uint8)
         imgs += [img_pred_]
         imageio.imwrite(os.path.join(dir_name, f'{i:03d}.png'), img_pred_)
