@@ -1,0 +1,17 @@
+__pycache__
+*/__pycache__
+*/*/__pycache__
+.vscode
+!.gitignore
+*.obj
+*.pkl
+*.npy
+*.png
+*.jpg
+# *.txt
+*.ckpt
+*.zip
+*/*.gif
+*.gif
+ckpts/*
+weixin/
