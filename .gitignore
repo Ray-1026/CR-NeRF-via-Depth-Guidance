@@ -6,10 +6,7 @@ __pycache__
 *.obj
 *.pkl
 *.npy
-*.png
-*.jpg
 *.ckpt
 *.zip
 ckpts/*
 results/
-data/*
