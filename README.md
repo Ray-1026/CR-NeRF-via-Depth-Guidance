@@ -16,7 +16,7 @@
 
 ## Results
 <p align="center">
-  <img src="./assets/metrics.png" alt="image" style="width: 50%;">
+  <img src="./assets/metrics.png" alt="image" style="width: 75%;">
 </p>
 
 ## Installation
