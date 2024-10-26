@@ -1,13 +1,24 @@
 # Cross-Ray Neural Radiance Fields in the Wild via Monocular Depth Guidance
 
 <p align="center">
-  <img src="https://github.com/Shukkai/CR-NeRF-via-Depth-Guidance/blob/main/video/trevi_fountain.gif" alt="image">
+  <img src="./assets/trevi_fountain.gif" alt="image" style="width: 45%;">
+  <img src="./assets/brandenburg_gate.gif" alt="image" style="width: 45%;">
 </p>
 
 ## About
 > **NYCU Computer Vision Final Project**\
 > Group 29\
 > Group Member: 蔡師睿、林書楷、劉又輔
+
+## Pipeline
+<p align="center">
+  <img src="./assets/pipeline.png" alt="image" style="width: 50%;">
+</p>
+
+## Results
+<p align="center">
+  <img src="./assets/metrics.png" alt="image" style="width: 75%;">
+</p>
 
 ## Installation
 Check [installation.md](https://github.com/Shukkai/CR-NeRF-via-Depth-Guidance/blob/main/docs/installation.md)
@@ -24,7 +35,7 @@ Check [dataset.md](https://github.com/Shukkai/CR-NeRF-via-Depth-Guidance/blob/ma
 # - sacre_coeur
 # - trevi_fountain
 
-./command/<scene_name>/get_video_demo.sh
+./scripts/<scene_name>/get_video_demo.sh
 ```
 
 **Evaluate metrics**
@@ -35,7 +46,7 @@ Check [dataset.md](https://github.com/Shukkai/CR-NeRF-via-Depth-Guidance/blob/ma
 # - sacre_coeur
 # - trevi_fountain
 
-./command/<scene_name>/test.sh
+./scripts/<scene_name>/test.sh
 ```
 
 ## Train
@@ -46,7 +57,7 @@ Check [dataset.md](https://github.com/Shukkai/CR-NeRF-via-Depth-Guidance/blob/ma
 # - sacre_coeur
 # - trevi_fountain
 
-./command/<scene_name>/train.sh
+./scripts/<scene_name>/train.sh
 ```
 
 ## Acknowledgments
