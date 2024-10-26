@@ -1,8 +1,7 @@
 # Cross-Ray Neural Radiance Fields in the Wild via Monocular Depth Guidance
 
 <p align="center">
-  <img src="./assets/trevi_fountain.gif" alt="image" style="width: 45%;">
-  <img src="./assets/brandenburg_gate.gif" alt="image" style="width: 45%;">
+  <img src="./assets/trevi_fountain.gif" alt="image">
 </p>
 
 ## About
@@ -17,14 +16,14 @@
 
 ## Results
 <p align="center">
-  <img src="./assets/metrics.png" alt="image" style="width: 75%;">
+  <img src="./assets/metrics.png" alt="image" style="width: 50%;">
 </p>
 
 ## Installation
-Check [installation.md](https://github.com/Shukkai/CR-NeRF-via-Depth-Guidance/blob/main/docs/installation.md)
+Check [installation.md](./docs/installation.md)
 
 ## Dataset
-Check [dataset.md](https://github.com/Shukkai/CR-NeRF-via-Depth-Guidance/blob/main/docs/dataset.md)
+Check [dataset.md](./docs/dataset.md)
 
 ## Evaluation
 **Video Demo**
